@@ -2,7 +2,7 @@
 const bcrypt = require('bcryptjs')
 
 const hashPasswordMiddleware = async (params, next) => {
-  // Only hash the password if it exists in the input object and has not been modified
+  // Only hash the password if the model is User and the password has not been modified
   if (params.model === 'User' && params.action === 'create') {
     let user = params.args.data
     const salt = await bcrypt.genSalt(10)
